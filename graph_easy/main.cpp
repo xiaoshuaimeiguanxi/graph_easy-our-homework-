@@ -165,6 +165,7 @@ int main()
 		SDL_GL_SwapWindow(window);
 	}
 
+
 	//ÍË³ö³ÌÐò
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
