@@ -1,0 +1,11 @@
+﻿  main.cpp
+D:\Microsoft Visual Studio\code\graph_easy\graph_easy\main.cpp(109,115): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+D:\Microsoft Visual Studio\code\graph_easy\graph_easy\main.cpp(109,87): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  正在生成代码
+  2 of 1836 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    31 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  graph_easy.vcxproj -> D:\Microsoft Visual Studio\code\graph_easy\x64\Release\graph_easy.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。
