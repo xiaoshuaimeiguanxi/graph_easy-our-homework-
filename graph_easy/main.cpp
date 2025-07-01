@@ -11,8 +11,12 @@
 #include "gray_processor.h"
 
 #include <iostream>
+#include <Windows.h>
+#include <commdlg.h>
 
 SDL_Window* window = nullptr;
+
+std::vector<ImageEntity*> images;
 
 //初始化断言
 void init_assert(bool flag, const char* error_msg)
@@ -20,6 +24,42 @@ void init_assert(bool flag, const char* error_msg)
 	if (flag) return;
 
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"程序启动失败", error_msg, window);
+}
+
+void open_file_dialog_win()
+{
+	char filename[4096] = { 0 };
+
+	OPENFILENAMEA ofn = { 0 };
+	ofn.lStructSize = sizeof(ofn);
+	ofn.lpstrFilter = "Image Files\0*.png;*.jpg;*.jpeg;*.bmp\0All Files\0*.*\0";
+	ofn.lpstrFile = filename;
+	ofn.nMaxFile = sizeof(filename);
+	ofn.Flags = OFN_ALLOWMULTISELECT | OFN_EXPLORER;
+	ofn.lpstrTitle = "选择图片";
+
+	if (GetOpenFileNameA(&ofn))
+	{
+		char* ptr = filename;
+		std::string folder = ptr;
+
+		ptr += folder.length() + 1;
+
+		// 判断是否是多选
+		if (*ptr == '\0') {
+			// 只选择了一个文件
+			std::cout << "选择的文件路径是：" << folder << std::endl;
+		}
+		else {
+			// 多选，解析每个文件名
+			while (*ptr) {
+				std::string full_path = folder + "\\" + ptr;
+				std::cout << "选择的文件路径是：" << full_path << std::endl;
+				images.push_back(new ImageEntity(full_path.c_str()));
+				ptr += strlen(ptr) + 1;
+			}
+		}
+	}
 }
 
 int main()
@@ -75,6 +115,10 @@ int main()
 		{
 			if (ImGui::BeginMenu(u8"文件"))
 			{
+				if (ImGui::MenuItem(u8"导入"))
+				{
+					open_file_dialog_win();
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu(u8"编辑"))
@@ -107,6 +151,10 @@ int main()
 
 		ImGui::Begin(u8"图像窗口");
 		ImGui::Image((void*)(intptr_t)image.get_texture_id(), ImVec2(image.get_surface()->w / 3, image.get_surface()->h / 3));
+		for (ImageEntity* i : images)
+		{
+			ImGui::Image((void*)(intptr_t)i->get_texture_id(), ImVec2(i->get_surface()->w / 3, i->get_surface()->h / 3));
+		}
 		ImGui::End();
 
 		ImGui::Render();

@@ -9,10 +9,21 @@
 
 #include "image_processor.h"
 
+extern SDL_Window* window;
+
 class ImageEntity
 {
 public:
     ImageEntity() :surface(nullptr), gl_texture(0) {}
+    ImageEntity(const char* path) 
+    {
+        surface = IMG_Load(path);
+        if (!surface)
+        {
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"≥Ã–Ú∆Ù∂Ø ß∞‹", u8"º”‘ÿÕºœÒ ß∞‹", window);
+        }
+        update_texture();
+    }
     ~ImageEntity()
     {
         for (ImageProcessor* p : processors)

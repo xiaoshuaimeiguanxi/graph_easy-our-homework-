@@ -51,6 +51,9 @@
     <ClCompile Include="image_entity.cpp">
       <Filter>头文件\header</Filter>
     </ClCompile>
+    <ClCompile Include="blur_processor.cpp">
+      <Filter>头文件\header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -87,6 +90,9 @@
       <Filter>头文件\header</Filter>
     </ClInclude>
     <ClInclude Include="gray_processor.h">
+      <Filter>头文件\header</Filter>
+    </ClInclude>
+    <ClInclude Include="blur_processor.h">
       <Filter>头文件\header</Filter>
     </ClInclude>
   </ItemGroup>
