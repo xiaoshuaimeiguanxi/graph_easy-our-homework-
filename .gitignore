@@ -1,0 +1,101 @@
+### Visual Studio 生成文件 ###
+# 编译输出目录
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+bld/
+[Bb]uild/
+
+# VS 用户特定文件和缓存
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.opendb
+*.vc.db
+*.db
+*.cache
+
+# 项目文件（保留.sln/.vcxproj/.filters，排除.user）
+*.vcxproj.user
+*.aps
+
+# 编译中间文件
+*.pdb
+*.ipdb
+*.ilk
+*.iobj
+*.ipch
+*.tlog
+*.log
+*.idb
+*.lastbuildstate
+*.exp
+*.lib
+
+### 可执行文件 ###
+*.exe
+*.dll
+
+### ImGui 配置文件 ###
+imgui.ini
+
+### 系统文件 ###
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+*.lnk
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+### 资源文件处理 ###
+# 保留 resources/ 目录中的所有内容
+!resources/**
+
+# 确保保留所有资源文件类型
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
+!**/*.bmp
+!**/*.tga
+!**/*.ttf
+!**/*.fnt
+
+### 第三方库处理 ###
+# 保留 thirdparty/ 和 imgui/ 目录中的所有内容
+!thirdparty/**
+!imgui/**
+
+# 特别排除第三方库中的编译文件（如果有）
+thirdparty/**/*.lib
+thirdparty/**/*.a
+thirdparty/**/*.dll
+thirdparty/**/Debug/
+thirdparty/**/Release/
+imgui/**/Debug/
+imgui/**/Release/
+
+### 源代码保留 ###
+# 确保保留所有源代码文件
+!**/*.cpp
+!**/*.h
+!**/*.hpp
+!**/*.c
+
+### 项目文件保留 ###
+# 保留解决方案和项目文件
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+
+### 特殊保留 ###
+# 确保保留空目录（可选）
+!.gitkeep
