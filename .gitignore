@@ -18,7 +18,7 @@ bld/
 *.cache
 *.vcxproj.user
 *.aps
-*.pdb
+
 *.ipdb
 *.ilk
 *.iobj
@@ -28,9 +28,7 @@ bld/
 *.idb
 *.lastbuildstate
 *.exp
-*.lib
 *.exe
-*.dll
 imgui.ini
 Thumbs.db
 [Dd]esktop.ini
@@ -43,10 +41,7 @@ Thumbs.db
 !thirdparty/**
 !thirdparty/lib/
 !thirdparty/lib/**
-!thirdparty/SDL2-2.32.8/lib/
-!thirdparty/SDL2-2.32.8/lib/**
-!thirdparty/SDL2_image-2.8.6/lib/
-!thirdparty/SDL2_image-2.8.6/lib/**
+
 !imgui/
 !imgui/**
 !resources/
