@@ -1,4 +1,5 @@
 ### Visual Studio 生成文件 ###
+# 编译输出目录
 [Bb]in/
 [Oo]bj/
 x64/
@@ -7,7 +8,13 @@ x86/
 [Rr]elease/
 bld/
 [Bb]uild/
-.vs/
+graph_easy/x64/
+graph_easy/x86/
+graph_easy/Debug/
+graph_easy/Release/
+
+# VS 用户特定文件和缓存
+.vs/  # 确保这行存在
 *.user
 *.suo
 *.userosscache
@@ -30,14 +37,26 @@ bld/
 *.exp
 *.exe
 imgui.ini
+
+### 系统文件 ###
 Thumbs.db
 [Dd]esktop.ini
 *.lnk
 .DS_Store
 *~
 
+### 编译中间文件加强排除 ###
+*.obj
+*.iobj
+*.ipdb
+*.tlog
+*.log
+*.jpdb
+vc*.pdb
+vcpkg.applocal.log
+*.recipe
+
 ### 核心保留规则 ###
-# 保留所有目录结构
 !*/
 !.gitignore
 !.gitkeep
