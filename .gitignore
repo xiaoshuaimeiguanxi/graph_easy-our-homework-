@@ -1,0 +1,96 @@
+### Visual Studio 生成文件 ###
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+bld/
+[Bb]uild/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.opendb
+*.vc.db
+*.db
+*.cache
+*.vcxproj.user
+*.aps
+*.pdb
+*.ipdb
+*.ilk
+*.iobj
+*.ipch
+*.tlog
+*.log
+*.idb
+*.lastbuildstate
+*.exp
+*.exe
+imgui.ini
+Thumbs.db
+[Dd]esktop.ini
+*.lnk
+.DS_Store
+*~
+
+### 核心保留规则 ###
+# 保留所有目录结构
+!*/
+!.gitignore
+!.gitkeep
+
+# 保留源代码
+!**/*.cpp
+!**/*.h
+!**/*.hpp
+!**/*.c
+
+# 保留项目文件
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+
+# 保留资源目录
+!resources/
+!resources/**
+
+# 保留资源文件类型
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
+!**/*.bmp
+!**/*.tga
+!**/*.ttf
+!**/*.fnt
+
+# 保留imgui目录
+!imgui/
+!imgui/**
+
+# 保留SDL头文件
+!graph_easy/thirdparty/SDL2-2.32.8/include/
+!graph_easy/thirdparty/SDL2-2.32.8/include/**
+!graph_easy/thirdparty/SDL2_image-2.8.6/include/
+!graph_easy/thirdparty/SDL2_image-2.8.6/include/**
+
+### 特殊处理SDL库文件 ###
+# 先排除所有.lib文件
+*.lib
+# 然后重新包含SDL库目录中的.lib文件
+!graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.lib
+!graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.lib
+
+# 先排除所有.dll文件
+*.dll
+# 然后重新包含SDL库目录中的.dll文件
+!graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.dll
+!graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.dll
+
+# 先排除所有.pdb文件
+*.pdb
+# 然后重新包含SDL库目录中的.pdb文件
+!graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.pdb
+!graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.pdb
