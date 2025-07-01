@@ -1,4 +1,13 @@
-### Visual Studio 生成文件 ###
+### 必须先包含需要保留的目录结构 ###
+# 强制保留关键目录
+!thirdparty/
+!thirdparty/**
+!imgui/
+!imgui/**
+!resources/
+!resources/**
+
+### 然后设置全局排除规则 ###
 # 编译输出目录
 [Bb]in/
 [Oo]bj/
@@ -57,9 +66,6 @@ Thumbs.db
 *~
 
 ### 资源文件处理 ###
-# 保留 resources/ 目录中的所有内容
-!resources/**
-
 # 确保保留所有资源文件类型
 !**/*.png
 !**/*.jpg
@@ -68,20 +74,6 @@ Thumbs.db
 !**/*.tga
 !**/*.ttf
 !**/*.fnt
-
-### 第三方库处理 ###
-# 保留 thirdparty/ 和 imgui/ 目录中的所有内容
-!thirdparty/**
-!imgui/**
-
-# 特别排除第三方库中的编译文件（如果有）
-thirdparty/**/*.lib
-thirdparty/**/*.a
-thirdparty/**/*.dll
-thirdparty/**/Debug/
-thirdparty/**/Release/
-imgui/**/Debug/
-imgui/**/Release/
 
 ### 源代码保留 ###
 # 确保保留所有源代码文件
@@ -96,6 +88,16 @@ imgui/**/Release/
 !*.vcxproj
 !*.vcxproj.filters
 
+### 第三方库处理 ###
+# 特别排除第三方库中的编译文件
+thirdparty/**/*.lib
+thirdparty/**/*.a
+thirdparty/**/*.dll
+thirdparty/**/Debug/
+thirdparty/**/Release/
+imgui/**/Debug/
+imgui/**/Release/
+
 ### 特殊保留 ###
-# 确保保留空目录（可选）
+# 确保保留空目录
 !.gitkeep
