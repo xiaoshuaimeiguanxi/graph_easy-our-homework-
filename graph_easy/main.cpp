@@ -14,6 +14,8 @@
 
 SDL_Window* window = nullptr;
 
+//zzy
+
 //≥ı ºªØ∂œ—‘
 void init_assert(bool flag, const char* error_msg)
 {
