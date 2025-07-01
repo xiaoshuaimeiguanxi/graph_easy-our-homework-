@@ -26,7 +26,7 @@ void init_assert(bool flag, const char* error_msg)
 
 int main()
 {
-	//随便打的一行注释Fashion Center
+	//坐落在那地极的Fashion Center
 	init_assert(!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER), u8"SDL初始化失败");
 	init_assert(IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG), "SDL_Image初始化失败");
 
