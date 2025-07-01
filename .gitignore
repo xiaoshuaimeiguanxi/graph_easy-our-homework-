@@ -1,14 +1,4 @@
-### 必须先包含需要保留的目录结构 ###
-# 强制保留关键目录
-!thirdparty/
-!thirdparty/**
-!imgui/
-!imgui/**
-!resources/
-!resources/**
-
-### 然后设置全局排除规则 ###
-# 编译输出目录
+### Visual Studio 生成文件 ###
 [Bb]in/
 [Oo]bj/
 x64/
@@ -17,8 +7,6 @@ x86/
 [Rr]elease/
 bld/
 [Bb]uild/
-
-# VS 用户特定文件和缓存
 .vs/
 *.user
 *.suo
@@ -28,12 +16,8 @@ bld/
 *.vc.db
 *.db
 *.cache
-
-# 项目文件（保留.sln/.vcxproj/.filters，排除.user）
 *.vcxproj.user
 *.aps
-
-# 编译中间文件
 *.pdb
 *.ipdb
 *.ilk
@@ -45,28 +29,39 @@ bld/
 *.lastbuildstate
 *.exp
 *.lib
-
-### 可执行文件 ###
 *.exe
 *.dll
-
-### ImGui 配置文件 ###
 imgui.ini
-
-### 系统文件 ###
-# Windows
 Thumbs.db
 [Dd]esktop.ini
 *.lnk
-
-# macOS
 .DS_Store
-
-# Linux
 *~
 
-### 资源文件处理 ###
-# 确保保留所有资源文件类型
+### 优先保留关键目录 ###
+!thirdparty/
+!thirdparty/**
+!thirdparty/lib/
+!thirdparty/lib/**
+!thirdparty/SDL2-2.32.8/lib/
+!thirdparty/SDL2-2.32.8/lib/**
+!thirdparty/SDL2_image-2.8.6/lib/
+!thirdparty/SDL2_image-2.8.6/lib/**
+!imgui/
+!imgui/**
+!resources/
+!resources/**
+
+### 源代码和项目文件 ###
+!**/*.cpp
+!**/*.h
+!**/*.hpp
+!**/*.c
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+
+### 资源文件类型 ###
 !**/*.png
 !**/*.jpg
 !**/*.jpeg
@@ -75,29 +70,11 @@ Thumbs.db
 !**/*.ttf
 !**/*.fnt
 
-### 源代码保留 ###
-# 确保保留所有源代码文件
-!**/*.cpp
-!**/*.h
-!**/*.hpp
-!**/*.c
-
-### 项目文件保留 ###
-# 保留解决方案和项目文件
-!*.sln
-!*.vcxproj
-!*.vcxproj.filters
-
-### 第三方库处理 ###
-# 特别排除第三方库中的编译文件
-thirdparty/**/*.lib
-thirdparty/**/*.a
-thirdparty/**/*.dll
+### 排除编译目录 ###
 thirdparty/**/Debug/
 thirdparty/**/Release/
 imgui/**/Debug/
 imgui/**/Release/
 
-### 特殊保留 ###
-# 确保保留空目录
+### 空目录保留 ###
 !.gitkeep
