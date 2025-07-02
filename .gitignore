@@ -1,4 +1,7 @@
 ### Visual Studio 生成文件 ###
+# 确保这行在顶部
+.vs/
+
 # 编译输出目录
 [Bb]in/
 [Oo]bj/
@@ -14,7 +17,6 @@ graph_easy/Debug/
 graph_easy/Release/
 
 # VS 用户特定文件和缓存
-.vs/  # 确保这行存在
 *.user
 *.suo
 *.userosscache
@@ -57,7 +59,7 @@ vcpkg.applocal.log
 *.recipe
 
 ### 核心保留规则 ###
-!*/
+# 只保留必要的空目录占位文件
 !.gitignore
 !.gitkeep
 
@@ -72,11 +74,8 @@ vcpkg.applocal.log
 !*.vcxproj
 !*.vcxproj.filters
 
-# 保留资源目录
-!resources/
+# 保留资源目录和文件
 !resources/**
-
-# 保留资源文件类型
 !**/*.png
 !**/*.jpg
 !**/*.jpeg
@@ -86,30 +85,22 @@ vcpkg.applocal.log
 !**/*.fnt
 
 # 保留imgui目录
-!imgui/
 !imgui/**
 
 # 保留SDL头文件
-!graph_easy/thirdparty/SDL2-2.32.8/include/
 !graph_easy/thirdparty/SDL2-2.32.8/include/**
-!graph_easy/thirdparty/SDL2_image-2.8.6/include/
 !graph_easy/thirdparty/SDL2_image-2.8.6/include/**
 
 ### 特殊处理SDL库文件 ###
-# 先排除所有.lib文件
+# 先排除所有库文件
 *.lib
-# 然后重新包含SDL库目录中的.lib文件
+*.dll
+*.pdb
+
+# 然后包含特定位置的SDL库文件
 !graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.lib
 !graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.lib
-
-# 先排除所有.dll文件
-*.dll
-# 然后重新包含SDL库目录中的.dll文件
 !graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.dll
 !graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.dll
-
-# 先排除所有.pdb文件
-*.pdb
-# 然后重新包含SDL库目录中的.pdb文件
 !graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.pdb
 !graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.pdb
