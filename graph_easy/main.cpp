@@ -16,6 +16,8 @@
 
 SDL_Window* window = nullptr;
 
+std::vector<ImageEntity*> images;
+
 //初始化断言
 void init_assert(bool flag, const char* error_msg)
 {
@@ -80,8 +82,6 @@ int main()
 	image.load_from_file(u8"resources/test.png");//从本地加载图像
 
 	GLuint texture = image.get_texture_id();//...
-
-	GrayProcessor gray_p;//创建灰度处理器
 	
 	SDL_Event event;//创建了一个用于接收和处理系统事件的核心数据结构
 
@@ -96,6 +96,9 @@ int main()
 	//初始化GUI的后端
 	ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
 	ImGui_ImplOpenGL3_Init(u8"#version 130");
+
+	GrayProcessor gray_p;//创建灰度处理器
+	image.add_processor(&gray_p, ProcessorType::Gray);//添加灰度处理器
 
 	bool is_over = false;
 	while (!is_over)
@@ -132,8 +135,6 @@ int main()
 		ImGui::Begin(u8"功能窗口");
 		if (ImGui::Button(u8"灰度化"))
 		{
-			
-			image.add_processor(&gray_p);//添加灰度处理器
 			image.process_all();
 		}
 		if (ImGui::Button(u8"模糊处理"))

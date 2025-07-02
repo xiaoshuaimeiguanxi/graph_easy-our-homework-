@@ -6,7 +6,7 @@
 class BlurProcessor :public ImageProcessor
 {
 public:
-	void apply_effect(SDL_Surface*& surface) override;
+	void apply_effect(SDL_Surface*& surface, ProcessorType id) override;
 };
 
 #endif // !_BLUR_PROCESSOR_H_

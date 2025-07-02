@@ -26,16 +26,16 @@ public:
     }
     ~ImageEntity()
     {
-        for (ImageProcessor* p : processors)
+        for (auto& p : processors)
         {
-            delete p;
+            delete p.first;
         }
         if (surface) SDL_FreeSurface(surface);
         if (gl_texture) glDeleteTextures(1, &gl_texture);
     }
 
     bool load_from_file(const char* path);//从本地加载图片
-    void add_processor(ImageProcessor* processor);//添加处理器
+    void add_processor(ImageProcessor* processor, ProcessorType id);//添加处理器
     void process_all();//处理器的执行函数
     void update_texture();//OpenGL需要纹理数据在GPU显存中，负责这个数据转换和传输过程
 
@@ -45,7 +45,7 @@ public:
 private:
     SDL_Surface* surface;  // SDL图像表面（CPU内存中的像素数据）
     GLuint gl_texture;// OpenGL纹理ID（GPU显存中的图像数据）
-    std::vector<ImageProcessor*> processors;//处理器存储仓库
+    std::vector<std::pair< ImageProcessor*, ProcessorType>> processors;//处理器存储仓库
 };
 
 #endif

@@ -1,11 +1,10 @@
 #include <SDL.h>
 #include "gray_processor.h"
 
-void GrayProcessor::apply_effect(SDL_Surface*& surface)
+void GrayProcessor::apply_effect(SDL_Surface*& surface, ProcessorType id)
 {
- 
-
     if (surface == nullptr) return; // 空Surface直接返回
+    if (id != ProcessorType::Gray)return;//判断是否是灰度处理
 
     // 1. 锁定Surface，确保可修改像素
     if (SDL_LockSurface(surface) < 0) {

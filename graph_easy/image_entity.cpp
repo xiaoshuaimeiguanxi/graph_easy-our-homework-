@@ -16,16 +16,16 @@ bool ImageEntity::load_from_file(const char* path)
 	return true;
 }
 
-void ImageEntity::add_processor(ImageProcessor* processor)
+void ImageEntity::add_processor(ImageProcessor* processor, ProcessorType id)
 {
-	processors.emplace_back(processor);
+    processors.push_back({ processor,id });
 }
 
 void ImageEntity::process_all()
 {
-	for (ImageProcessor* p : processors)
+	for (auto& p : processors)
 	{
-		p->apply_effect(surface);
+		p.first->apply_effect(surface,p.second);
 	}
 	update_texture();
 }

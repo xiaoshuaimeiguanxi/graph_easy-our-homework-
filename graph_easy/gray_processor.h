@@ -6,7 +6,7 @@
 class GrayProcessor:public ImageProcessor
 {
 public:
-	void apply_effect(SDL_Surface*& surface) override;
+	void apply_effect(SDL_Surface*& surface, ProcessorType id) override;
 };
 
 #endif // !_GRAY_PROCESSOR_H_
