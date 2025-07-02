@@ -104,3 +104,9 @@ vcpkg.applocal.log
 !graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.dll
 !graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.pdb
 !graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.pdb
+# 忽略编译器生成文件
+*.obj
+*.recipe
+*.exe
+.vs/
+x64/

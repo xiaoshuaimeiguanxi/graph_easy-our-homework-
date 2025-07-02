@@ -14,8 +14,6 @@
 
 SDL_Window* window = nullptr;
 
-//zzy
-
 //初始化断言
 void init_assert(bool flag, const char* error_msg)
 {
@@ -33,29 +31,31 @@ int main()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);//开启双缓冲
 
-	window = SDL_CreateWindow(u8"GraphEasy", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	window = SDL_CreateWindow(u8"GraphEasy", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);//建立窗口
 	init_assert(window, u8"窗口创建失败");
 
-	SDL_GLContext gl_context = SDL_GL_CreateContext(window);
+	SDL_GLContext gl_context = SDL_GL_CreateContext(window);//创建opengl上下文
 	init_assert(gl_context, u8"创建opengl上下文失败");
 	SDL_GL_SetSwapInterval(1);//开启垂直同步
 
-	ImageEntity image;
-	image.load_from_file(u8"resources/test.png");
+	ImageEntity image;//创建图像实体
+	image.load_from_file(u8"resources/test.png");//从本地加载图像
 
-	GLuint texture = image.get_texture_id();
+	GLuint texture = image.get_texture_id();//...
 
-	GrayProcessor gray_p;
-
-	SDL_Event event;
+	GrayProcessor gray_p;//创建灰度处理器
+	
+	SDL_Event event;//创建了一个用于接收和处理系统事件的核心数据结构
 
 	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
+	ImGui::CreateContext();//创建imgui上下文
 	ImGuiIO& io = ImGui::GetIO();
 	(void)io;
-	ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\msyh.ttc", 18.0f, nullptr, io.Fonts->GetGlyphRangesChineseFull());
-	ImGui::StyleColorsDark();
 
+	ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\msyh.ttc", 18.0f, nullptr, io.Fonts->GetGlyphRangesChineseFull());//加载中文字体
+	ImGui::StyleColorsDark();//深色主题
+
+	//初始化GUI的后端
 	ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
 	ImGui_ImplOpenGL3_Init(u8"#version 130");
 
@@ -64,18 +64,19 @@ int main()
 	{
 		while (SDL_PollEvent(&event))
 		{
-			ImGui_ImplSDL2_ProcessEvent(&event);
-			if (event.type == SDL_QUIT)
+			ImGui_ImplSDL2_ProcessEvent(&event);//将事件传给imgui处理
+			if (event.type == SDL_QUIT)//退出
 				is_over = true;
 		}
 
+		//新的一帧
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
 
-		if (ImGui::BeginMainMenuBar())
+		if (ImGui::BeginMainMenuBar())//创建主菜单兰
 		{
-			if (ImGui::BeginMenu(u8"文件"))
+			if (ImGui::BeginMenu(u8"文件"))//文件菜单选项
 			{
 				ImGui::EndMenu();
 			}
@@ -90,7 +91,7 @@ int main()
 		if (ImGui::Button(u8"灰度化"))
 		{
 			
-			image.add_processor(&gray_p);
+			image.add_processor(&gray_p);//添加灰度处理器
 			image.process_all();
 		}
 		if (ImGui::Button(u8"模糊处理"))
@@ -105,26 +106,31 @@ int main()
 		{
 
 		}
-		ImGui::End();
+		ImGui::End();//UI区域闭合
 
 		ImGui::Begin(u8"图像窗口");
 		ImGui::Image((void*)(intptr_t)image.get_texture_id(), ImVec2(image.get_surface()->w / 3, image.get_surface()->h / 3));
 		ImGui::End();
 
-		ImGui::Render();
-		glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		//图像窗口的End()只是完成了该窗口的定义，而后续的渲染步骤才是真正将包括图像窗口在内的所有UI元素绘制到屏幕的关键过程
+		ImGui::Render();//生成imGUI绘制数据
+		glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);//设置opengl视口为整个窗口
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);//设置清屏颜色
 		glClear(GL_COLOR_BUFFER_BIT);
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-		SDL_GL_SwapWindow(window);
+
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());//渲染imgui
+		SDL_GL_SwapWindow(window);//交换前后缓冲区
 	}
 
 	//退出程序
-	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();//关闭imgui后端，和59 60 行对应
 	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
-	SDL_GL_DeleteContext(gl_context);
-	SDL_DestroyWindow(window);
+	ImGui::DestroyContext();//销毁imgui上下文，对应51行
+	SDL_GL_DeleteContext(gl_context);//销毁opengl上下文，37行
+	SDL_DestroyWindow(window);//销毁窗口，34
+
+	//退出SDL_image和SDL
 	IMG_Quit();
 	SDL_Quit();
 

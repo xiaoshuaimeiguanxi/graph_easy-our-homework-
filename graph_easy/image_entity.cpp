@@ -7,10 +7,10 @@ extern SDL_Window* window;
 
 bool ImageEntity::load_from_file(const char* path)
 {
-	surface = IMG_Load(path);
+	surface = IMG_Load(path);//调用函数返回指针，此指针包含了图像数据等 在CPU内存里
 	if (!surface)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"程序启动失败", u8"加载图像失败", window);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"程序启动失败", u8"加载图像失败", window);//发生错误弹窗
 	}
 	update_texture();
 	return true;
@@ -30,7 +30,7 @@ void ImageEntity::process_all()
 	update_texture();
 }
 
-void ImageEntity::update_texture()
+void ImageEntity::update_texture()//OpenGL需要纹理数据在GPU显存中，负责这个数据转换和传输过程
 {
     SDL_PixelFormat* format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA32);
     SDL_Surface* converted = SDL_ConvertSurface(surface, format, 0);

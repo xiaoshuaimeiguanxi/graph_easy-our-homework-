@@ -23,18 +23,18 @@ public:
         if (gl_texture) glDeleteTextures(1, &gl_texture);
     }
 
-    bool load_from_file(const char* path);
-    void add_processor(ImageProcessor* processor);
-    void process_all();
-    void update_texture();
+    bool load_from_file(const char* path);//从本地加载图片
+    void add_processor(ImageProcessor* processor);//添加处理器
+    void process_all();//处理器的执行函数
+    void update_texture();//OpenGL需要纹理数据在GPU显存中，负责这个数据转换和传输过程
 
     SDL_Surface* get_surface() const { return surface; }
     GLuint get_texture_id() const { return gl_texture; }
 
 private:
-    SDL_Surface* surface;
-    GLuint gl_texture;
-    std::vector<ImageProcessor*> processors;
+    SDL_Surface* surface;  // SDL图像表面（CPU内存中的像素数据）
+    GLuint gl_texture;// OpenGL纹理ID（GPU显存中的图像数据）
+    std::vector<ImageProcessor*> processors;//处理器存储仓库
 };
 
 #endif
