@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="blur_processor.cpp" />
     <ClCompile Include="gray_processor.cpp" />
     <ClCompile Include="image_entity.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_opengl3.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blur_processor.h" />
     <ClInclude Include="gray_processor.h" />
     <ClInclude Include="image_entity.h" />
     <ClInclude Include="image_processor.h" />
