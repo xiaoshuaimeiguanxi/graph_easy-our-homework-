@@ -112,4 +112,4 @@ vcpkg.applocal.log
 *.pdb
 # 然后重新包含SDL库目录中的.pdb文件
 !graph_easy/thirdparty/SDL2-2.32.8/lib/**/*.pdb
-!graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.pdb
+!graph_easy/thirdparty/SDL2_image-2.8.6/lib/**/*.pdb.vs/
