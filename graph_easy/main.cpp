@@ -9,6 +9,7 @@
 #include "imgui/backends/imgui_impl_opengl3.h"
 #include "image_entity.h"
 #include "gray_processor.h"
+#include"blur_processor.h"           //模糊处理
 
 #include <iostream>
 #include <Windows.h>
@@ -84,6 +85,7 @@ int main()
 	GLuint texture = image.get_texture_id();
 
 	GrayProcessor gray_p;
+	BlurProcessor blur_p;//模糊处理
 
 	SDL_Event event;
 
@@ -137,6 +139,8 @@ int main()
 		}
 		if (ImGui::Button(u8"模糊处理"))
 		{
+			image.add_processor(&blur_p);    //添加模糊处理器
+			image.process_all();             //应用所有处理器
 
 		}
 		if (ImGui::Button(u8"二值化"))

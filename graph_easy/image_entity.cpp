@@ -10,7 +10,7 @@ bool ImageEntity::load_from_file(const char* path)
 	surface = IMG_Load(path);
 	if (!surface)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"³ÌĞòÆô¶¯Ê§°Ü", u8"¼ÓÔØÍ¼ÏñÊ§°Ü", window);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"é”™è¯¯", u8"åŠ è½½å›¾åƒå¤±è´¥", window);
 	}
 	update_texture();
 	return true;
@@ -37,7 +37,7 @@ void ImageEntity::update_texture()
     SDL_FreeFormat(format);
 
     if (!converted) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"³ÌĞòÆô¶¯Ê§°Ü", u8"×ª»»Í¼Ïñ¸ñÊ½Ê§°Ü", window);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"é”™è¯¯", u8"è½¬æ¢æ–‡ä»¶æ ¼å¼å¤±è´¥", window);
     }
 
     glGenTextures(1, &gl_texture);
