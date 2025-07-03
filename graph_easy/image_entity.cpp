@@ -10,7 +10,8 @@ bool ImageEntity::load_from_file(const char* path)
 	surface = IMG_Load(path);
 	if (!surface)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"错误", u8"加载图像失败", window);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"错误", u8"加载图像失败", window);
+        return false;   //修复：图像加载失败应返回false
 	}
 	update_texture();
 	return true;
@@ -32,12 +33,16 @@ void ImageEntity::process_all()
 
 void ImageEntity::update_texture()
 {
+    if (!surface) return;  //加个保险
+
+
     SDL_PixelFormat* format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA32);
     SDL_Surface* converted = SDL_ConvertSurface(surface, format, 0);
     SDL_FreeFormat(format);
 
     if (!converted) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, u8"错误", u8"转换文件格式失败", window);
+        return;   //防止访问nullptr
     }
 
     glGenTextures(1, &gl_texture);
