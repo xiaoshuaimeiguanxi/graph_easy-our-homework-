@@ -8,14 +8,19 @@
 #include "imgui/backends/imgui_impl_sdl2.h"
 #include "imgui/backends/imgui_impl_opengl3.h"
 #include "image_entity.h"
-#include "gray_processor.h"
+
+#include "gray_processor.h"  //灰度处理
+#include "edge_processor.h"  // 边缘检测处理器
+
 
 #include <iostream>
 #include <algorithm> // 包含 algorithm 头文件
+#include <string>
+
+using namespace std;
 
 SDL_Window* window = nullptr;
-#include <string>
-using namespace std;
+
 
 //zzy
 
@@ -113,7 +118,15 @@ int main()
         }
         if (ImGui::Button(u8"边缘查找"))
         {
+            // 创建边缘检测处理器
+            EdgeDetectionProcessor edge_processor;
 
+            // 添加到图像处理器列表并应用效果
+            image.add_processor(&edge_processor);
+            image.process_all();
+
+            // 更新纹理
+            texture = image.get_texture_id();
         }
         // 添加缩放控制
         ImGui::SliderFloat(u8"缩放", &zoom, 0.1f, 3.0f);   //滑块控件进行缩放
